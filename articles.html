@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>文章列表 · 简笔日志</title>
+    <title>文章列表 · 冰宝的个人空间</title>
 
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" />
+    <!-- Font Awesome 6 (CDN) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
 
@@ -28,9 +29,6 @@
     </script>
 
     <style>
-        /* 加载动画（同主页，但这里不需要了，因为列表页直接显示，不重复加载动画） */
-        /* 我们保留一个简单的加载指示，但不做全屏遮罩 */
-        /* 复用部分样式 */
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: #f1f5f9; }
         ::-webkit-scrollbar-thumb { background: #b9d6f0; border-radius: 4px; }
@@ -83,15 +81,15 @@
 </head>
 <body>
 
-    <!-- ========== 导航栏（与主页一致） ========== -->
+    <!-- ========== 导航栏 ========== -->
     <nav id="navbar" class="fixed top-0 left-0 w-full z-50 bg-white/70 dark:bg-gray-900/70 backdrop-blur-sm border-b border-gray-100/50 dark:border-gray-800/50">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-16">
             <a href="index.html" class="text-2xl font-serif font-bold text-primary flex items-center gap-2">
-                <i class="fa fa-pencil-square-o"></i> 简笔日志
+                <i class="fa-regular fa-pen-to-square"></i> 冰宝的个人空间
             </a>
             <div class="flex items-center gap-4">
                 <button id="themeToggle" class="text-gray-600 dark:text-gray-300 text-sm flex items-center gap-1 hover:text-primary transition">
-                    <i class="fa fa-moon-o" id="themeIcon"></i> <span id="themeLabel">夜间</span>
+                    <i class="fa-regular fa-moon" id="themeIcon"></i> <span id="themeLabel">夜间</span>
                 </button>
                 <div class="hidden md:flex items-center space-x-6 text-sm font-medium">
                     <a href="index.html#about" class="text-gray-600 dark:text-gray-300 hover:text-primary transition">关于我</a>
@@ -99,7 +97,7 @@
                     <a href="index.html#contact" class="text-gray-600 dark:text-gray-300 hover:text-primary transition">联系</a>
                 </div>
                 <button id="menuBtn" class="md:hidden text-gray-600 dark:text-gray-300 text-xl">
-                    <i class="fa fa-bars"></i>
+                    <i class="fa-solid fa-bars"></i>
                 </button>
             </div>
         </div>
@@ -127,7 +125,7 @@
                 <div class="flex-grow">
                     <div class="relative">
                         <input type="text" id="searchInput" placeholder="搜索文章..." class="w-full pl-10 pr-4 py-3 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
-                        <i class="fa fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                        <i class="fa-solid fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
                     </div>
                 </div>
                 <div class="flex flex-wrap gap-2">
@@ -135,13 +133,13 @@
                         <option value="">所有分类</option>
                         <option value="随笔">随笔</option>
                         <option value="小说">小说</option>
+                        <option value="书评">书评</option>
                         <option value="番剧感想">番剧感想</option>
                         <option value="游戏角色Wiki">游戏角色Wiki</option>
                         <option value="游戏介绍">游戏介绍</option>
-                        <!-- 可扩展更多 -->
                     </select>
                     <button id="sortBtn" class="px-4 py-3 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-200 rounded-md bg-white hover:bg-gray-50 dark:hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-primary">
-                        <i class="fa fa-sort mr-1"></i> 排序
+                        <i class="fa-solid fa-sort mr-1"></i> 排序
                     </button>
                 </div>
             </div>
@@ -172,7 +170,7 @@
     <!-- ========== 页脚 ========== -->
     <footer class="bg-gray-900 text-white py-8 px-4">
         <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center text-sm text-gray-400">
-            <p>&copy; 2026 简笔日志 · 用文字记录生活</p>
+            <p>&copy; 2026 冰宝的个人空间 · 行动胜过万全</p>
             <div class="flex gap-6 mt-3 md:mt-0">
                 <a href="#" id="privacyLink" class="hover:text-white transition">隐私政策</a>
                 <a href="#" id="termsLink" class="hover:text-white transition">使用条款</a>
@@ -205,7 +203,7 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
 
-            // ---------- 夜间模式（同主页） ----------
+            // ---------- 夜间模式 ----------
             const themeToggle = document.getElementById('themeToggle');
             const themeIcon = document.getElementById('themeIcon');
             const themeLabel = document.getElementById('themeLabel');
@@ -214,11 +212,11 @@
             function setTheme(theme) {
                 if (theme === 'dark') {
                     html.classList.add('dark');
-                    themeIcon.className = 'fa fa-sun-o';
+                    themeIcon.className = 'fa-regular fa-sun';
                     themeLabel.textContent = '白天';
                 } else {
                     html.classList.remove('dark');
-                    themeIcon.className = 'fa fa-moon-o';
+                    themeIcon.className = 'fa-regular fa-moon';
                     themeLabel.textContent = '夜间';
                 }
                 localStorage.setItem('theme', theme);
@@ -287,7 +285,7 @@
                 if (e.target === modal) closeLegalModal();
             });
 
-            // ---------- 文章数据（模拟，实际使用时你可以用真实数据替换） ----------
+            // ---------- 文章数据（模拟） ----------
             const articlesData = [
                 { id: 1, title: '对工作的感受', category: '随笔', date: '2026-06-20', summary: '一些关于日常工作的零碎思考……', image: 'https://picsum.photos/seed/work/400/300', link: 'articles/随笔/对工作的感受.html' },
                 { id: 2, title: '春日杂记', category: '随笔', date: '2026-06-12', summary: '春天里的琐碎与温柔。', image: 'https://picsum.photos/seed/spring/400/300', link: 'articles/随笔/春日杂记.html' },
@@ -295,7 +293,6 @@
                 { id: 4, title: '女仆小姐的贪吃日常 感想', category: '番剧感想', date: '2026-06-15', summary: '温馨治愈的美食番，每一集都让人会心一笑。', image: 'https://picsum.photos/seed/maid/400/300', link: 'articles/番剧感想/女仆小姐的贪吃日常 感想.html' },
                 { id: 5, title: '梅琳娜 · 角色档案', category: '游戏角色Wiki', date: '2026-06-10', summary: '艾尔登之影中神秘旅人的深度解析。', image: 'https://picsum.photos/seed/melina/400/300', link: 'articles/游戏角色Wiki/梅琳娜.html' },
                 { id: 6, title: '星露谷物语 介绍', category: '游戏介绍', date: '2026-06-08', summary: '一款让人放松的农场模拟游戏。', image: 'https://picsum.photos/seed/stardew/400/300', link: 'articles/游戏介绍/星露谷物语.html' },
-                // 可继续添加更多文章
             ];
 
             // ---------- 读取 URL 参数，自动筛选分类 ----------
@@ -307,11 +304,10 @@
                 articles: articlesData,
                 displayedCount: 6,
                 searchTerm: '',
-                categoryFilter: autoCategory,   // 从 URL 自动填入
+                categoryFilter: autoCategory,
                 sortOption: 'date-desc'
             };
 
-            // 如果自动分类存在，同步下拉框
             if (autoCategory) {
                 document.getElementById('categoryFilter').value = autoCategory;
             }
@@ -326,14 +322,12 @@
 
             // ---------- 渲染函数 ----------
             function render() {
-                // 过滤
                 let filtered = state.articles.filter(a => {
                     const matchSearch = a.title.includes(state.searchTerm) || a.summary.includes(state.searchTerm);
                     const matchCategory = state.categoryFilter === '' || a.category === state.categoryFilter;
                     return matchSearch && matchCategory;
                 });
 
-                // 排序
                 switch (state.sortOption) {
                     case 'date-desc': filtered.sort((a,b) => new Date(b.date) - new Date(a.date)); break;
                     case 'date-asc':  filtered.sort((a,b) => new Date(a.date) - new Date(b.date)); break;
@@ -364,20 +358,18 @@
                             <h3 class="text-lg font-serif font-bold text-gray-800 dark:text-gray-100">${article.title}</h3>
                             <p class="text-gray-500 dark:text-gray-300 text-sm mt-1 line-clamp-2">${article.summary}</p>
                             <a href="${article.link}" class="mt-3 inline-block text-primary text-sm font-medium hover:text-blue-700 transition">
-                                阅读全文 <i class="fa fa-arrow-right ml-1"></i>
+                                阅读全文 <i class="fa-solid fa-arrow-right ml-1"></i>
                             </a>
                         </div>
                     </div>
                 `).join('');
 
-                // 显示或隐藏加载更多
                 if (show.length < total) {
                     loadMoreBtn.classList.remove('hidden');
                 } else {
                     loadMoreBtn.classList.add('hidden');
                 }
 
-                // 重新触发 AOS（新添加的元素）
                 AOS.refresh();
             }
 
@@ -391,7 +383,6 @@
             categoryFilter.addEventListener('change', function() {
                 state.categoryFilter = this.value;
                 state.displayedCount = 6;
-                // 更新 URL 参数（便于分享）
                 const url = new URL(window.location);
                 if (state.categoryFilter) {
                     url.searchParams.set('category', state.categoryFilter);
@@ -402,7 +393,6 @@
                 render();
             });
 
-            // 排序按钮下拉
             sortBtn.addEventListener('click', function(e) {
                 e.stopPropagation();
                 sortDropdown.classList.toggle('hidden');
@@ -415,9 +405,8 @@
                     state.sortOption = this.dataset.sort;
                     state.displayedCount = 6;
                     sortDropdown.classList.add('hidden');
-                    // 更新按钮文字
                     const text = this.textContent.trim();
-                    sortBtn.innerHTML = `<i class="fa fa-sort mr-1"></i> ${text}`;
+                    sortBtn.innerHTML = `<i class="fa-solid fa-sort mr-1"></i> ${text}`;
                     render();
                 });
             });
@@ -427,10 +416,7 @@
                 render();
             });
 
-            // 初始化渲染
             render();
-
-            // 初始化 AOS
             AOS.init({ duration: 800, once: true });
 
         });
