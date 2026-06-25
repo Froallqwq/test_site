@@ -11,6 +11,9 @@
     <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
 
+    <!-- ===== 新增：引用外部文章数据 ===== -->
+    <script src="js/articles-data.js"></script>
+
     <script>
         tailwind.config = {
             darkMode: 'class',
@@ -285,29 +288,32 @@
                 if (e.target === modal) closeLegalModal();
             });
 
-            // ---------- 文章数据（模拟） ----------
-            const articlesData = [
-                { id: 1, title: '对工作的感受', category: '随笔', date: '2026-06-20', summary: '一些关于日常工作的零碎思考……', image: 'https://picsum.photos/seed/work/400/300', link: 'articles/随笔/对工作的感受.html' },
-                { id: 2, title: '春日杂记', category: '随笔', date: '2026-06-12', summary: '春天里的琐碎与温柔。', image: 'https://picsum.photos/seed/spring/400/300', link: 'articles/随笔/春日杂记.html' },
-                { id: 3, title: '星夜旅人（节选）', category: '小说', date: '2026-06-18', summary: '一个关于追寻与失去的短篇故事。', image: 'https://picsum.photos/seed/star/400/300', link: 'articles/小说/星夜旅人.html' },
-                { id: 4, title: '女仆小姐的贪吃日常 感想', category: '番剧感想', date: '2026-06-15', summary: '温馨治愈的美食番，每一集都让人会心一笑。', image: 'https://picsum.photos/seed/maid/400/300', link: 'articles/番剧感想/女仆小姐的贪吃日常 感想.html' },
-                { id: 5, title: '梅琳娜 · 角色档案', category: '游戏角色Wiki', date: '2026-06-10', summary: '艾尔登之影中神秘旅人的深度解析。', image: 'https://picsum.photos/seed/melina/400/300', link: 'articles/游戏角色Wiki/梅琳娜.html' },
-                { id: 6, title: '星露谷物语 介绍', category: '游戏介绍', date: '2026-06-08', summary: '一款让人放松的农场模拟游戏。', image: 'https://picsum.photos/seed/stardew/400/300', link: 'articles/游戏介绍/星露谷物语.html' },
-            ];
-
             // ---------- 读取 URL 参数，自动筛选分类 ----------
             const urlParams = new URLSearchParams(window.location.search);
             const autoCategory = urlParams.get('category') || '';
 
             // ---------- 状态 ----------
+            // 检查外部数据是否已加载
+            if (typeof articlesData === 'undefined') {
+                // 若未定义，显示错误并停止渲染
+                document.getElementById('articlesGrid').innerHTML = `
+                    <div class="col-span-full text-center py-12 text-red-500">
+                        ⚠️ 数据文件加载失败，请确保 js/articles-data.js 存在
+                    </div>
+                `;
+                document.getElementById('loadMoreBtn').classList.add('hidden');
+                return; // 终止脚本
+            }
+
             let state = {
-                articles: articlesData,
+                articles: articlesData,          // 直接使用外部数据
                 displayedCount: 6,
                 searchTerm: '',
                 categoryFilter: autoCategory,
                 sortOption: 'date-desc'
             };
 
+            // 如果自动分类存在，同步下拉框
             if (autoCategory) {
                 document.getElementById('categoryFilter').value = autoCategory;
             }
@@ -322,12 +328,14 @@
 
             // ---------- 渲染函数 ----------
             function render() {
+                // 过滤
                 let filtered = state.articles.filter(a => {
                     const matchSearch = a.title.includes(state.searchTerm) || a.summary.includes(state.searchTerm);
                     const matchCategory = state.categoryFilter === '' || a.category === state.categoryFilter;
                     return matchSearch && matchCategory;
                 });
 
+                // 排序
                 switch (state.sortOption) {
                     case 'date-desc': filtered.sort((a,b) => new Date(b.date) - new Date(a.date)); break;
                     case 'date-asc':  filtered.sort((a,b) => new Date(a.date) - new Date(b.date)); break;
@@ -348,7 +356,7 @@
                 grid.innerHTML = show.map(article => `
                     <div class="article-card bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-100/80 dark:border-gray-700/50 overflow-hidden" data-aos="fade-up">
                         <div class="h-44 overflow-hidden bg-gray-100 dark:bg-gray-700">
-                            <img src="${article.image}" alt="${article.title}" class="w-full h-full object-cover" />
+                            <img src="${article.image}" alt="${article.title}" class="w-full h-full object-cover" onerror="this.src='https://picsum.photos/seed/fallback/400/300'" />
                         </div>
                         <div class="p-5">
                             <div class="flex items-center justify-between mb-2">
@@ -364,12 +372,14 @@
                     </div>
                 `).join('');
 
+                // 显示或隐藏加载更多
                 if (show.length < total) {
                     loadMoreBtn.classList.remove('hidden');
                 } else {
                     loadMoreBtn.classList.add('hidden');
                 }
 
+                // 重新触发 AOS
                 AOS.refresh();
             }
 
@@ -383,6 +393,7 @@
             categoryFilter.addEventListener('change', function() {
                 state.categoryFilter = this.value;
                 state.displayedCount = 6;
+                // 更新 URL 参数
                 const url = new URL(window.location);
                 if (state.categoryFilter) {
                     url.searchParams.set('category', state.categoryFilter);
@@ -416,7 +427,10 @@
                 render();
             });
 
+            // 初始化渲染
             render();
+
+            // 初始化 AOS
             AOS.init({ duration: 800, once: true });
 
         });
