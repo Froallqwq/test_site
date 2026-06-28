@@ -8,6 +8,8 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Font Awesome 6 (CDN) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <!-- 悠哉字体 -->
+    <link href="https://cdn.jsdelivr.net/npm/cn-fontsource-yozai-regular@1.0.0/index.min.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
 
@@ -47,6 +49,11 @@
         }
         .dark #navbar.scrolled {
             background: rgba(30, 41, 59, 0.85);
+        }
+
+        /* ===== 悠哉字体应用到标题 ===== */
+        h1, h2, h3, .article-card h3, .article-card .font-serif {
+            font-family: 'Yozai', 'Noto Serif SC', serif;
         }
 
         .article-card {
@@ -138,6 +145,7 @@
                         <option value="小说">小说</option>
                         <option value="书评">书评</option>
                         <option value="番剧感想">番剧感想</option>
+                        <option value="番剧汇总">番剧汇总</option>
                         <option value="游戏角色Wiki">游戏角色Wiki</option>
                         <option value="游戏介绍">游戏介绍</option>
                     </select>
@@ -307,7 +315,7 @@
 
             let state = {
                 articles: articlesData,          // 直接使用外部数据
-                displayedCount: 6,
+                displayedCount: 9,
                 searchTerm: '',
                 categoryFilter: autoCategory,
                 sortOption: 'date-desc'
@@ -386,13 +394,13 @@
             // ---------- 事件绑定 ----------
             searchInput.addEventListener('input', function() {
                 state.searchTerm = this.value.trim();
-                state.displayedCount = 6;
+                state.displayedCount = 9;
                 render();
             });
 
             categoryFilter.addEventListener('change', function() {
                 state.categoryFilter = this.value;
-                state.displayedCount = 6;
+                state.displayedCount = 9;
                 // 更新 URL 参数
                 const url = new URL(window.location);
                 if (state.categoryFilter) {
@@ -414,7 +422,7 @@
             document.querySelectorAll('.sort-option').forEach(opt => {
                 opt.addEventListener('click', function() {
                     state.sortOption = this.dataset.sort;
-                    state.displayedCount = 6;
+                    state.displayedCount = 9;
                     sortDropdown.classList.add('hidden');
                     const text = this.textContent.trim();
                     sortBtn.innerHTML = `<i class="fa-solid fa-sort mr-1"></i> ${text}`;
@@ -423,7 +431,7 @@
             });
 
             loadMoreBtn.addEventListener('click', function() {
-                state.displayedCount += 3;
+                state.displayedCount += 9;
                 render();
             });
 
