@@ -14,7 +14,7 @@ const articlesData = [
         date: '2022-01-01', 
         summary: '我看过的2022年以前番剧汇总。', 
         image: 'https://picsum.photos/seed/summary2022/400/300', 
-        link: 'articles/番剧感想/2022年以前番剧汇总.html',
+        link: 'articles/番剧感想/2022年前番剧汇总.html',
         content: '' 
     },
     { 
@@ -24,7 +24,7 @@ const articlesData = [
         date: '2022-10-01', 
         summary: '我看过的2022年秋季番剧汇总。', 
         image: 'https://picsum.photos/seed/2022autumn/400/300', 
-        link: 'articles/番剧感想/2022秋季番剧总览.html',
+        link: 'articles/番剧感想/2022秋季番剧汇总.html',
         content: '' 
     },
     { 
@@ -34,7 +34,7 @@ const articlesData = [
         date: '2023-01-15', 
         summary: '我看过的2023年冬季番剧汇总。', 
         image: 'https://picsum.photos/seed/2023winter/400/300', 
-        link: 'articles/番剧感想/2023冬季番剧总览.html',
+        link: 'articles/番剧感想/2023冬季番剧汇总.html',
         content: '' 
     },
     { 
@@ -44,7 +44,7 @@ const articlesData = [
         date: '2023-04-01', 
         summary: '我看过的2023年春季番剧汇总。', 
         image: 'https://picsum.photos/seed/2023spring/400/300', 
-        link: 'articles/番剧感想/2023春季番剧总览.html',
+        link: 'articles/番剧感想/2023春季番剧汇总.html',
         content: '' 
     },
     { 
@@ -54,7 +54,7 @@ const articlesData = [
         date: '2023-07-01', 
         summary: '我看过的2023年夏季番剧汇总。', 
         image: 'https://picsum.photos/seed/2023summer/400/300', 
-        link: 'articles/番剧感想/2023夏季番剧总览.html',
+        link: 'articles/番剧感想/2023夏季番剧汇总.html',
         content: '' 
     },
     { 
@@ -64,7 +64,7 @@ const articlesData = [
         date: '2023-10-01', 
         summary: '我看过的2023年秋季番剧汇总。', 
         image: 'https://picsum.photos/seed/2023autumn/400/300', 
-        link: 'articles/番剧感想/2023秋季番剧总览.html',
+        link: 'articles/番剧感想/2023秋季番剧汇总.html',
         content: '' 
     },
     { 
@@ -74,7 +74,7 @@ const articlesData = [
         date: '2024-01-15', 
         summary: '我看过的2024年冬季番剧汇总。', 
         image: 'https://picsum.photos/seed/2024winter/400/300', 
-        link: 'articles/番剧感想/2024冬季番剧总览.html',
+        link: 'articles/番剧感想/2024冬季番剧汇总.html',
         content: '' 
     },
     { 
@@ -84,7 +84,7 @@ const articlesData = [
         date: '2024-04-01', 
         summary: '我看过的2024年春季番剧汇总。', 
         image: 'https://picsum.photos/seed/2024spring/400/300', 
-        link: 'articles/番剧感想/2024春季番剧总览.html',
+        link: 'articles/番剧感想/2024春季番剧汇总.html',
         content: '' 
     },
     { 
@@ -94,7 +94,7 @@ const articlesData = [
         date: '2024-07-01', 
         summary: '我看过的2024年夏季番剧汇总。', 
         image: 'https://picsum.photos/seed/2024summer/400/300', 
-        link: 'articles/番剧感想/2024夏季番剧总览.html',
+        link: 'articles/番剧感想/2024夏季番剧汇总.html',
         content: '' 
     },
     { 
@@ -104,7 +104,7 @@ const articlesData = [
         date: '2024-10-01', 
         summary: '我看过的2024年秋季番剧汇总。', 
         image: 'https://picsum.photos/seed/2024autumn/400/300', 
-        link: 'articles/番剧感想/2024秋季番剧总览.html',
+        link: 'articles/番剧感想/2024秋季番剧汇总.html',
         content: '' 
     },
     { 
