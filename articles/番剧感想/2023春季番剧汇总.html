@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="light">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>2023春季番剧总览 · 冰宝的个人空间</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link href="https://cdn.jsdelivr.net/npm/cn-fontsource-yozai-regular@1.0.0/index.min.css" rel="stylesheet" />
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#0ea5e9',
+                        secondary: '#7dd3fc',
+                    },
+                    fontFamily: {
+                        serif: ['Noto Serif SC', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body { background: #f8fafc; }
+
+        #navbar {
+            transition: box-shadow 0.3s ease, background 0.3s ease;
+        }
+        #navbar.scrolled {
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            background: rgba(255,255,255,0.85);
+            backdrop-filter: blur(8px);
+        }
+        .dark #navbar.scrolled {
+            background: rgba(30, 41, 59, 0.85);
+        }
+
+        h1, h2, h3, .anime-card h3 {
+            font-family: 'Yozai', 'Noto Serif SC', serif;
+        }
+
+        .anime-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        .anime-card {
+            background: white;
+            border-radius: 1.5rem;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            border: 1px solid #f1f5f9;
+            transition: transform 0.25s, box-shadow 0.25s;
+        }
+        .anime-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 30px -12px rgba(14,165,233,0.2);
+        }
+        .anime-card a { display: block; text-decoration: none; }
+        .anime-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-bottom: 2px solid #e2e8f0;
+        }
+        .anime-card .info { padding: 1rem 1.2rem 1.2rem; }
+        .anime-card h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 0.3rem;
+            line-height: 1.4;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        .anime-card p {
+            color: #475569;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            margin-bottom: 0.25rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        .anime-card .rank {
+            color: #f59e0b;
+            font-weight: 600;
+            font-size: 0.95rem;
+            margin-top: 0.2rem;
+        }
+        .anime-card .rank.no-star {
+            color: #94a3b8;
+        }
+        .anime-card .rank.seven-star {
+            color: #f59e0b;
+            font-weight: 700;
+        }
+        .anime-card .read-link {
+            display: inline-block;
+            margin-top: 0.5rem;
+            color: #0ea5e9;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+        .anime-card .read-link:hover { color: #0284c7; }
+
+        .dark body { background: #0f172a; }
+        .dark .anime-card { background: #1e293b; border-color: #334155; }
+        .dark .anime-card h3 { color: #f1f5f9; }
+        .dark .anime-card p { color: #cbd5e1; }
+        .dark .anime-card .rank { color: #fbbf24; }
+        .dark .anime-card .rank.no-star { color: #64748b; }
+        .dark .anime-card .read-link { color: #38bdf8; }
+    </style>
+</head>
+<body>
+
+    <!-- ===== 导航栏 ===== -->
+    <nav id="navbar" class="fixed top-0 left-0 w-full z-50 bg-white/70 dark:bg-gray-900/70 backdrop-blur-sm border-b border-gray-100/50 dark:border-gray-800/50">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-16">
+            <a href="../../index.html" class="text-2xl font-serif font-bold text-primary flex items-center gap-2">
+                <i class="fa-solid fa-pencil"></i> 冰宝的个人空间
+            </a>
+            <div class="flex items-center gap-4">
+                <button id="themeToggle" class="text-gray-600 dark:text-gray-300 text-sm flex items-center gap-1 hover:text-primary transition">
+                    <i class="fa-regular fa-moon" id="themeIcon"></i> <span id="themeLabel">夜间</span>
+                </button>
+                <div class="hidden md:flex items-center space-x-6 text-sm font-medium">
+                    <a href="../../index.html#about" class="text-gray-600 dark:text-gray-300 hover:text-primary transition">关于我</a>
+                    <a href="../../articles.html" class="text-gray-600 dark:text-gray-300 hover:text-primary transition">文章</a>
+                    <a href="../../index.html#contact" class="text-gray-600 dark:text-gray-300 hover:text-primary transition">联系</a>
+                </div>
+                <button id="menuBtn" class="md:hidden text-gray-600 dark:text-gray-300 text-xl">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </div>
+        <div id="mobileMenu" class="md:hidden hidden bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm border-t border-gray-100 dark:border-gray-800 px-4 py-3 space-y-2 text-sm font-medium">
+            <a href="../../index.html#about" class="block text-gray-600 dark:text-gray-300 hover:text-primary py-1">关于我</a>
+            <a href="../../articles.html" class="block text-gray-600 dark:text-gray-300 hover:text-primary py-1">文章</a>
+            <a href="../../index.html#contact" class="block text-gray-600 dark:text-gray-300 hover:text-primary py-1">联系</a>
+        </div>
+    </nav>
+
+    <!-- ===== 页面主体 ===== -->
+    <div class="max-w-6xl mx-auto px-4 py-6 pt-20">
+
+        <h1 class="text-3xl md:text-4xl font-serif font-bold text-gray-800 dark:text-gray-100 mb-2">
+            🌸 2023年春季番剧总览
+        </h1>
+        <p class="text-gray-500 dark:text-gray-400 mb-4">个人向追番记录 · 共11部</p>
+
+        <!-- ===== 评分标准（置顶） ===== -->
+        <div class="mb-6 p-4 bg-gray-50 dark:bg-gray-800/50 rounded-xl border border-gray-200 dark:border-gray-700">
+            <h3 class="text-sm font-bold text-gray-700 dark:text-gray-300 mb-2">📊 个人评分标准</h3>
+            <div class="text-xs text-gray-500 dark:text-gray-400 space-y-1 leading-relaxed">
+                <p>⭐️⭐️⭐️⭐️⭐️ 特别推荐 —— 全方位优秀，值得一看</p>
+                <p>⭐️⭐️⭐️⭐️ 很推荐 —— 整体很棒，但有细节我不太推荐</p>
+                <p>⭐️⭐️⭐️ 整体推荐 —— 值得看，但我对部分情节抱有疑问</p>
+                <p>⭐️⭐️ 一般 —— 我觉得有些地方可以做得更好</p>
+                <p>⭐️ 避坑 —— 大多是剧情问题（画风问题我大概看都不看，所以看个人接受水平）</p>
+                <p>⭕ 没星 —— 我无权评价的神番</p>
+                <p class="text-amber-500 dark:text-amber-400 font-medium">7★ 神番 —— 大大方方看，无论是全年龄向还是画风还是剧情还是细节还是音乐还是人设全给到夯</p>
+            </div>
+        </div>
+
+        <div class="anime-grid">
+
+            <!-- 1. 带着智能手机闯荡异世界。 -->
+            <div class="anime-card">
+                <a href="带着智能手机闯荡异世界2.html">
+                    <img src="https://cdn.jsdelivr.net/gh/Froallqwq/test_site@main/images/番剧/带着智能手机闯荡异世界.webp" alt="带着智能手机闯荡异世界。" loading="lazy" />
+                    <div class="info">
+                        <h3>带着智能手机闯荡异世界。2</h3>
+                        <p>因神明的失误而死的望月冬夜转生到异世界，拥有了被神明强化的身体以及在异世界也能使用的智能手机，与形形色色的人相遇，展开悠哉的冒险[reference:18][reference:19]。</p>
+                        <p class="rank">⭐️⭐️⭐️⭐️</p>
+                        <span class="read-link">阅读感想 →</span>
+                    </div>
+                </a>
+            </div>
+
+            <!-- 2. 熊熊勇闯异世界 PUNCH!（神番） -->
+            <div class="anime-card">
+                <a href="熊熊勇闯异世界PUNCH.html">
+                    <img src="https://cdn.jsdelivr.net/gh/Froallqwq/test_site@main/images/番剧/熊熊勇闯异世界PUNCH.webp" alt="熊熊勇闯异世界 PUNCH!" loading="lazy" />
+                    <div class="info">
+                        <h3>熊熊勇闯异世界 PUNCH! ✨</h3>
+                        <p>家里蹲玩家少女优奈身穿熊熊装备，在异世界展开冒险，与伙伴菲娜一起品味美食、结交新友、化解魔物危机[reference:20][reference:21]。7★ 神番，全给到夯。</p>
+                        <p class="rank seven-star">7★ 神番</p>
+                        <span class="read-link">阅读感想 →</span>
+                    </div>
+                </a>
+            </div>
+
+            <!-- 3. 放学后失眠的你（神番） -->
+            <div class="anime-card">
+                <a href="放学后失眠的你.html">
+                    <img src="https://cdn.jsdelivr.net/gh/Froallqwq/test_site@main/images/番剧/放学后失眠的你.webp" alt="放学后失眠的你" loading="lazy" />
+                    <div class="info">
+                        <h3>放学后失眠的你 ✨</h3>
+                        <p>苦于失眠症的高中生中见丸太，与同样患有失眠症的曲伊咲在学校天文台相遇，二人开始共享这个秘密空间[reference:22][reference:23]。7★ 神番，全给到夯。</p>
+                        <p class="rank seven-star">7★ 神番</p>
+                        <span class="read-link">阅读感想 →</span>
+                    </div>
+                </a>
+            </div>
+
+            <!-- 4. 偶像大师 灰姑娘女孩 U149 -->
+            <div class="anime-card">
+                <a href="偶像大师灰姑娘女孩U149.html">
+                    <img src="https://cdn.jsdelivr.net/gh/Froallqwq/test_site@main/images/番剧/偶像大师灰姑娘女孩U149.webp" alt="偶像大师 灰姑娘女孩 U149" loading="lazy" />
+                    <div class="info">
+                        <h3>偶像大师 灰姑娘女孩 U149</h3>
+                        <p>身高不足149cm的小小少女们在第3艺能科与新晋制作人相遇，从零起步向着偶像的梦想前进[reference:24][reference:25]。</p>
+                        <p class="rank">⭐️⭐️⭐️⭐️</p>
+                        <span class="read-link">阅读感想 →</span>
+                    </div>
+                </a>
+            </div>
+
+            <!-- 5. 无神世界中的神明活动 -->
+            <div class="anime-card">
+                <a href="无神世界中的神明活动.html">
+                    <img src="https://cdn.jsdelivr.net/gh/Froallqwq/test_site@main/images/番剧/无神世界中的神明活动.webp" alt="无神世界中的神明活动" loading="lazy" />
+                    <div class="info">
+                        <h3>无神世界中的神明活动</h3>
+                        <p>新兴宗教教祖之子卜部征人在献祭仪式中意外转生到没有“神”与“宗教”概念的异世界，开始传播信仰[reference:26][reference:27]。</p>
+                        <p class="rank">⭐️⭐️⭐️⭐️</p>
+                        <span class="read-link">阅读感想 →</span>
+                    </div>
+                </a>
+            </div>
+
+            <!-- 6. 祭品公主与兽之王（5星） -->
+            <div class="anime-card">
+                <a href="祭品公主与兽之王.html">
+                    <img src="https://cdn.jsdelivr.net/gh/Froallqwq/test_site@main/images/番剧/祭品公主与兽之王.webp" alt="祭品公主与兽之王" loading="lazy" />
+                    <div class="info">
+                        <h3>祭品公主与兽之王</h3>
+                        <p>第99位活祭少女莎莉菲被献给兽王雷恩哈特，意外揭开其身份秘密并成为王妃，展开跨越种族的恋爱[reference:28][reference:29]。</p>
+                        <p class="rank">⭐️⭐️⭐️⭐️⭐️</p>
+                        <span class="read-link">阅读感想 →</span>
+                    </div>
+                </a>
+            </div>
+
+            <!-- 7. 【我推的孩子】（神番） -->
+            <div class="anime-card">
+                <a href="我推的孩子.html">
+                    <img src="https://cdn.jsdelivr.net/gh/Froallqwq/test_site@main/images/番剧/我推的孩子.webp" alt="【我推的孩子】" loading="lazy" />
+                    <div class="info">
+                        <h3>【我推的孩子】 ✨</h3>
+                        <p>妇产科医生雨宫吾郎转生为自己所推偶像星野爱的孩子，在演艺界展开一段关于爱、谎言与复仇的故事[reference:30][reference:31]。7★ 神番，全给到夯。</p>
+                        <p class="rank seven-star">7★ 神番</p>
+                        <span class="read-link">阅读感想 →</span>
+                    </div>
+                </a>
+            </div>
+
+            <!-- 8. 在异世界获得超强能力的我，在现实世界照样无敌 -->
+            <div class="anime-card">
+                <a href="在异世界获得超强能力.html">
+                    <img src="https://cdn.jsdelivr.net/gh/Froallqwq/test_site@main/images/番剧/在异世界获得超强能力.webp" alt="在异世界获得超强能力的我，在现实世界照样无敌" loading="lazy" />
+                    <div class="info">
+                        <h3>在异世界获得超强能力的我，在现实世界照样无敌～等级提升改变人生命运～</h3>
+                        <p>饱受欺凌的少年天上优夜偶然发现通往异世界的大门，获得强大能力后脱胎换骨，在两个世界展开逆袭[reference:32]。</p>
+                        <p class="rank">⭐️⭐️⭐️⭐️</p>
+                        <span class="read-link">阅读感想 →</span>
+                    </div>
+                </a>
+            </div>
+
+            <!-- 9. 宝可梦 地平线（3星） -->
+            <div class="anime-card">
+                <a href="宝可梦地平线.html">
+                    <img src="https://cdn.jsdelivr.net/gh/Froallqwq/test_site@main/images/番剧/宝可梦地平线.webp" alt="宝可梦 地平线" loading="lazy" />
+                    <div class="info">
+                        <h3>宝可梦 地平线(只看到喵哈进化假面猫)</h3>
+                        <p>自1997年《无印篇》开播以来首次更换主角的宝可梦动画，少女莉可与少年罗伊踏上宝可梦世界的全新冒险[reference:33]。</p>
+                        <p class="rank">⭐️⭐️⭐️</p>
+                        <span class="read-link">阅读感想 →</span>
+                    </div>
+                </a>
+            </div>
+
+            <!-- 10. 第二次被异世界召唤（3星） -->
+            <div class="anime-card">
+                <a href="第二次被异世界召唤.html">
+                    <img src="https://cdn.jsdelivr.net/gh/Froallqwq/test_site@main/images/番剧/第二次被异世界召唤.webp" alt="第二次被异世界召唤" loading="lazy" />
+                    <div class="info">
+                        <h3>第二次被异世界召唤</h3>
+                        <p>曾以勇者身份拯救异世界的须崎雪被强制送回原世界后，与同学们一起再次被召唤回异世界[reference:34]。</p>
+                        <p class="rank">⭐️⭐️⭐️</p>
+                        <span class="read-link">阅读感想 →</span>
+                    </div>
+                </a>
+            </div>
+
+            <!-- 11. LoveLive!虹咲学园学园偶像同好会 NEXT SKY（4星） -->
+            <div class="anime-card">
+                <a href="LoveLive虹咲学园NEXT_SKY.html">
+                    <img src="https://cdn.jsdelivr.net/gh/Froallqwq/test_site@main/images/番剧/LoveLive虹咲学园NEXT_SKY.webp" alt="LoveLive!虹咲学园学园偶像同好会 NEXT SKY" loading="lazy" />
+                    <div class="info">
+                        <h3>LoveLive!虹咲学园学园偶像同好会 NEXT SKY</h3>
+                        <p>栞子·米娅·岚珠加入后13人的虹咲学园学园偶像同好会，举办第2届学园偶像祭的故事[reference:35]。</p>
+                        <p class="rank">⭐️⭐️⭐️⭐️</p>
+                        <span class="read-link">阅读感想 →</span>
+                    </div>
+                </a>
+            </div>
+
+        </div>
+
+        <div class="mt-10 pt-6 border-t border-gray-200 dark:border-gray-700 text-sm text-gray-400">
+            <p>📌 共11部 · 持续补完中</p>
+        </div>
+    </div>
+
+    <!-- ===== JavaScript ===== -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const navbar = document.getElementById('navbar');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 30) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            });
+
+            const menuBtn = document.getElementById('menuBtn');
+            const mobileMenu = document.getElementById('mobileMenu');
+            menuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+            document.querySelectorAll('#mobileMenu a').forEach(link => {
+                link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+            });
+
+            const themeToggle = document.getElementById('themeToggle');
+            const themeIcon = document.getElementById('themeIcon');
+            const themeLabel = document.getElementById('themeLabel');
+            const html = document.documentElement;
+
+            function setTheme(theme) {
+                if (theme === 'dark') {
+                    html.classList.add('dark');
+                    themeIcon.className = 'fa-regular fa-sun';
+                    themeLabel.textContent = '白天';
+                } else {
+                    html.classList.remove('dark');
+                    themeIcon.className = 'fa-regular fa-moon';
+                    themeLabel.textContent = '夜间';
+                }
+                localStorage.setItem('theme', theme);
+            }
+
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme) {
+                setTheme(savedTheme);
+            } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                setTheme('dark');
+            }
+
+            themeToggle.addEventListener('click', function() {
+                const isDark = html.classList.contains('dark');
+                setTheme(isDark ? 'light' : 'dark');
+            });
+        });
+    </script>
+</body>
+</html>
