@@ -251,15 +251,35 @@ const articlesData = [
     // ============================================================
     // 二、番剧感想(按时间顺序继续编号,id 27~)
     // ============================================================
-    {
-        id: 27,
-        title: 'BOSS女王第二季 感想',
-        category: '番剧感想',
-        date: '2026-06-28',
-        summary: '身为悲剧始作俑者的最强邪恶BOSS女王为民竭心尽力第二季 个人感想。',
-        image: 'https://picsum.photos/seed/bossqueen/400/300',
+    { 
+        id: 27, 
+        title: 'BOSS女王第二季 感想', 
+        category: '番剧感想', 
+        date: '2026-06-28', 
+        summary: '身为悲剧始作俑者的最强邪恶BOSS女王为民竭心尽力第二季 个人感想。', 
+        image: 'https://picsum.photos/seed/bossqueen/400/300', 
         link: 'articles/番剧感想/BOSS女王第二季.html',
-        content: ''
+        content: '原名：身為悲劇始作俑者的最強邪惡BOSS女王為民竭心尽力；译名：BOSS女王第二季；评分：' 
     },
-    // ... 更多感想(按时间顺序追加,id 继续递增)
+    { 
+        id: 28, 
+        title: '主播女孩重度依赖', 
+        category: '番剧感想', 
+        date: '2026-07-01', 
+        summary: 'NEEDY GIRL OVERDOSE 主播女孩重度依赖 个人感想。', 
+        image: 'https://picsum.photos/seed/needygirl/400/300', 
+        link: 'articles/番剧感想新增/主播女孩重度依赖.html',
+        content: '原名：NEEDY GIRL OVERDOSE；译名：主播女孩重度依赖；评分：3星' 
+    },
+    { 
+        id: 29, 
+        title: '选择感染者WIXOSS', 
+        category: '番剧感想', 
+        date: '2026-07-01', 
+        summary: 'WIXOSS系列动画个人感想汇总。', 
+        image: 'https://picsum.photos/seed/wixoss/400/300', 
+        link: 'articles/番剧感想新增/选择感染者WIXOSS.html',
+        content: '原名：selector infected WIXOSS / selector spread WIXOSS / Lostorage incited WIXOSS / Lostorage conflated WIXOSS / WIXOSS DIVA(A)LIVE；译名：选择感染者WIXOSS / 选择扩散者WIXOSS / 失忆煽动WIXOSS / 失忆融合WIXOSS / WIXOSS DIVA(A)LIVE；评分：5星' 
+    },
+    // ... 更多感想（按时间顺序追加，id 继续递增）
 ];
