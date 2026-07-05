@@ -259,7 +259,7 @@ const articlesData = [
         summary: '身为悲剧始作俑者的最强邪恶BOSS女王为民竭心尽力第二季 个人感想。', 
         image: 'https://picsum.photos/seed/bossqueen/400/300', 
         link: 'articles/番剧感想/BOSS女王第二季.html',
-        content: '原名：身為悲劇始作俑者的最強邪惡BOSS女王為民竭心尽力；译名：BOSS女王第二季；评分：' 
+        content: '原名：身為悲劇始作俑者的最強邪惡BOSS女王為民竭心尽力；译名：BOSS女王第二季、成为悲剧元凶的最强异端，最后头目女王为了人民牺牲奉献、悲剧始作俑者 最强异端、幕后黑手女王，为了人民鞠躬尽瘁；评分：' 
     },
     { 
         id: 28, 
