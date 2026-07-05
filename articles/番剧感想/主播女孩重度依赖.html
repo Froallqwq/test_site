@@ -1,1 +1,433 @@
-1
+<!DOCTYPE html>
+<html lang="zh-CN" class="light">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>主播女孩重度依赖 · 冰宝的个人空间</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <!-- 悠哉字体 -->
+    <link href="https://cdn.jsdelivr.net/npm/cn-fontsource-yozai-regular@1.0.0/index.min.css" rel="stylesheet" />
+    <!-- AOS -->
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#0ea5e9',
+                        secondary: '#7dd3fc',
+                    },
+                    fontFamily: {
+                        serif: ['Noto Serif SC', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* 滚动条 */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f5f9; }
+        ::-webkit-scrollbar-thumb { background: #b9d6f0; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #7bb8e0; }
+
+        /* 导航栏 */
+        #navbar {
+            transition: box-shadow 0.3s ease, background 0.3s ease;
+        }
+        #navbar.scrolled {
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            background: rgba(255,255,255,0.85);
+            backdrop-filter: blur(8px);
+        }
+        .dark #navbar.scrolled {
+            background: rgba(30, 41, 59, 0.85);
+        }
+
+        body { background: #f8fafc; }
+        .dark body { background: #0f172a; }
+
+        h1, h2, h3 {
+            font-family: 'Yozai', 'Noto Serif SC', serif;
+        }
+
+        /* 黑幕效果 */
+        .heimu {
+            background: #000;
+            color: #000;
+            transition: color 0.2s;
+            cursor: default;
+        }
+        .heimu:hover {
+            color: #fff;
+        }
+
+        /* 两栏布局 */
+        .review-layout {
+            display: flex;
+            gap: 2.5rem;
+            align-items: flex-start;
+        }
+        .visual-side {
+            flex: 0 0 320px;
+            position: sticky;
+            top: 5rem;
+        }
+        .visual-side img {
+            width: 100%;
+            border-radius: 1.25rem;
+            box-shadow: 0 12px 32px -8px rgba(0,0,0,0.18);
+            display: block;
+        }
+        .content-side { flex: 1; min-width: 0; }
+
+        /* 标题区 */
+        .title-block .original {
+            font-size: 1.6rem; font-weight: 700;
+            color: #0ea5e9; letter-spacing: 1px;
+        }
+        .title-block .chinese {
+            font-size: 2rem; font-weight: 700;
+            color: #0f172a; margin-top: 0.25rem;
+        }
+        .dark .title-block .chinese { color: #f1f5f9; }
+
+        /* 整体评价 */
+        .overall-box {
+            background: linear-gradient(135deg, #e0f2fe 0%, #f0f9ff 100%);
+            border-radius: 1.25rem; padding: 1.5rem;
+            margin-bottom: 2rem; border: 1px solid #bae6fd;
+        }
+        .dark .overall-box {
+            background: linear-gradient(135deg, #0c4a6e 0%, #1e293b 100%);
+            border-color: #334155;
+        }
+        .overall-box h2 { font-size: 1.25rem; font-weight: 700; margin-bottom: 0.75rem; color: #0c4a6e; }
+        .dark .overall-box h2 { color: #7dd3fc; }
+        .overall-box p { line-height: 1.8; font-size: 1rem; color: #334155; }
+        .dark .overall-box p { color: #cbd5e1; }
+
+        /* 分项标题 */
+        .section-title {
+            font-size: 1.1rem; font-weight: 700;
+            color: #0f172a; margin: 1.5rem 0 1rem 0;
+            padding-bottom: 0.4rem;
+            border-bottom: 2px solid #e2e8f0;
+        }
+        .dark .section-title { color: #f1f5f9; border-color: #334155; }
+
+        /* 分项卡片 */
+        .review-item {
+            background: #fff;
+            border-radius: 1rem; padding: 1.25rem 1.5rem;
+            border: 1px solid #f1f5f9;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .review-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px -6px rgba(0,0,0,0.08);
+        }
+        .dark .review-item { background: #1e293b; border-color: #334155; }
+
+        .review-item .item-header {
+            display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.5rem;
+        }
+        .review-item .item-header i {
+            font-size: 1.1rem; color: #0ea5e9; width: 1.4rem; text-align: center;
+        }
+        .review-item .item-header h3 { font-size: 1.05rem; font-weight: 700; color: #0f172a; }
+        .dark .review-item .item-header h3 { color: #e2e8f0; }
+        .review-item .item-body { font-size: 0.95rem; line-height: 1.8; color: #475569; }
+        .dark .review-item .item-body { color: #cbd5e1; }
+        .review-item .stars { display: inline-block; color: #f59e0b; font-size: 0.9rem; margin-left: 0.5rem; }
+
+        .big-rating { font-size: 1.4rem; color: #f59e0b; margin-top: 0.5rem; letter-spacing: 2px; }
+
+        /* 评论区 */
+        .comment-section {
+            margin-top: 3rem; padding-top: 2rem;
+            border-top: 2px solid #e2e8f0;
+        }
+        .dark .comment-section { border-color: #334155; }
+        .comment-section h3 {
+            font-size: 1.1rem; font-weight: 700; margin-bottom: 1rem;
+        }
+
+        /* 响应式 */
+        @media (max-width: 768px) {
+            .review-layout { flex-direction: column; }
+            .visual-side {
+                flex: none; width: 100%; max-width: 280px;
+                margin: 0 auto; position: static;
+            }
+            .title-block .original { font-size: 1.2rem; }
+            .title-block .chinese { font-size: 1.5rem; }
+        }
+
+        .item-list { display: flex; flex-direction: column; gap: 1rem; }
+    </style>
+</head>
+<body>
+
+    <!-- ===== 导航栏 ===== -->
+    <nav id="navbar" class="fixed top-0 left-0 w-full z-50 bg-white/70 dark:bg-gray-900/70 backdrop-blur-sm border-b border-gray-100/50 dark:border-gray-800/50">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-16">
+            <a href="../../index.html" class="text-2xl font-serif font-bold text-primary flex items-center gap-2">
+                <i class="fa-regular fa-pen-to-square"></i> 冰宝的个人空间
+            </a>
+            <div class="flex items-center gap-4">
+                <!-- 夜间模式切换 -->
+                <button id="themeToggle" class="text-gray-600 dark:text-gray-300 text-sm flex items-center gap-1 hover:text-primary transition">
+                    <i class="fa-regular fa-moon" id="themeIcon"></i> <span id="themeLabel">夜间</span>
+                </button>
+                <div class="hidden md:flex items-center space-x-6 text-sm font-medium">
+                    <a href="../../index.html#about" class="text-gray-600 dark:text-gray-300 hover:text-primary transition">关于我</a>
+                    <a href="../../articles.html" class="text-gray-600 dark:text-gray-300 hover:text-primary transition">文章</a>
+                    <a href="../../index.html#contact" class="text-gray-600 dark:text-gray-300 hover:text-primary transition">联系</a>
+                </div>
+                <button id="menuBtn" class="md:hidden text-gray-600 dark:text-gray-300 text-xl">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </div>
+        <!-- 移动端下拉 -->
+        <div id="mobileMenu" class="md:hidden hidden bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm border-t border-gray-100 dark:border-gray-800 px-4 py-3 space-y-2 text-sm font-medium">
+            <a href="../../index.html#about" class="block text-gray-600 dark:text-gray-300 hover:text-primary py-1">关于我</a>
+            <a href="../../articles.html" class="block text-gray-600 dark:text-gray-300 hover:text-primary py-1">文章</a>
+            <a href="../../index.html#contact" class="block text-gray-600 dark:text-gray-300 hover:text-primary py-1">联系</a>
+        </div>
+    </nav>
+
+    <!-- ===== 页面主体 ===== -->
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6 pt-20">
+        <div class="review-layout">
+
+            <!-- 左栏：视觉图 -->
+            <div class="visual-side" data-aos="fade-right" data-aos-duration="800">
+                <img src="../../images/番剧/主播女孩重度依赖.webp" alt="主播女孩重度依赖" />
+            </div>
+
+            <!-- 右栏：评价内容 -->
+            <div class="content-side" data-aos="fade-left" data-aos-duration="800">
+
+                <div class="title-block">
+                    <div class="original">NEEDY GIRL OVERDOSE</div>
+                    <div class="chinese">主播女孩重度依赖</div>
+                    <div class="text-sm text-gray-400 dark:text-gray-500 mt-2">
+                        2026年4月 · Yostar Pictures · 全13话
+                    </div>
+                    <div class="big-rating">⭐️⭐️⭐️️</div>
+                </div>
+
+                <!-- 整体评价 -->
+                <div class="overall-box">
+                    <h2><i class="fa-regular fa-pen-to-square"></i> 整体评价</h2>
+                    <p>
+                        “电波”不是神人剧情的遮幕，放开手脚想写什么就写什么可以不冠超天酱之名，是3个未能成为神、1个犹大和1个普通（存疑）少女的自传。
+                    </p>
+                </div>
+
+                <!-- 分项评价 -->
+                <div class="section-title"><i class="fa-regular fa-list"></i> 分项评价</div>
+                <div class="mb-4 px-4 py-2 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg text-xs text-red-600 dark:text-red-400 flex items-center gap-2">
+                    <i class="fa-solid fa-triangle-exclamation"></i>
+                    涉及剧透内容已启用黑幕，鼠标悬停可查看
+                </div>
+                <div class="item-list">
+
+                    <div class="review-item">
+                        <div class="item-header">
+                            <i class="fa-solid fa-book-open"></i>
+                            <h3>剧情 / 改编</h3>
+                            <span class="stars">⭐️⭐️️</span>
+                        </div>
+                        <div class="item-body">
+						<p>1星给3集糖糖的封神刻画，倒不如说这才是我看这个番的原因，1星给结尾包怪味寿司，至少就像12集所说的，<span class="heimu" title="你知道的太多了">就算是现象级网红，现实生活中也有普通人不了解你</span>，某种意义上算是总结里所说的，对自己想写什么就写什么的一种妥协？还是神人也要接地气？不过<span class="heimu" title="你知道的太多了">卡茜最后和卖面小哥结婚这点姑且算幸福，这种真心爱着的寿司多多益善</span>。</p>
+						<p>至于其他的剧情，为了游戏改编剧情（和我一样）基本不用看，约等于开播前评论区的观点“捧新声优和oc”来的。游戏相关的话也就第三集的糖糖个人回，最后13集的结尾<span class="heimu" title="你知道的太多了">有个游戏内全结局达成的回放，以及暗示13集描述的可能也只是结局的一种，不过这样未免有点为自己乱写一通找借口了</span>。甚至很难评价说我最高评价的第三集刚好“没有原作者”参与制作，有点难绷在的。</p>
+						<p>聊聊主线剧情，卡拉马佐夫把超天酱拉下神坛，老套的主角受到反派（过时的主角）的鼓励，于是励志超越反派的剧情。<span class="heimu" title="你知道的太多了">但是一般情况，要么彻底超越要么彻底杀死，我总觉得这样人气打赢超天酱然后再去三次元救糖糖有点怪，那你11集那快一集的犹大耶稣小剧场是啥，相爱相杀然后歌颂标新立异吗，总觉得有种高不成低不就的感觉</span>。双方的备战（？）流程和小故事还是有点看头的（我认为），但要忍着神人动画以及神人演出来看的话，我是觉得没这必要。如何宣泄情感，用尽各种表现形式又不被当作是无病呻吟其实是相当有看头的，但很可惜至少这番也就看完会说“啊这番神了”的程度（比母鸡卡还强点至少<span class="heimu" title="你知道的太多了">洛丽波这个犹大位是自始至终贯彻的，伏笔啥的也有回收</span>，不像丰川家的黑暗\o/）</p>
+                        </div>
+                    </div>
+
+                    <div class="review-item">
+                        <div class="item-header">
+                            <i class="fa-solid fa-user"></i>
+                            <h3>角色塑造</h3>
+                            <span class="stars">⭐️⭐️⭐️️</span>
+                        </div>
+                        <div class="item-body">
+							</p>超天酱:没星。互联网的天使，但在这部番里姑且被当作垫脚石了。</p>
+							</p>糖糖:给不了星。个人情绪问题。至少就我自己而言，我看这部番是想看糖糖的过去、现在和未来的，给我塞几个我游戏里没见过的人，完了她几集才露个面，你让我怎么喷。姑且是把她的性格下放给者四个人，每人一部分，但对我而言没必要。<span class="heimu" title="你知道的太多了">对糖糖发病的描写确实真实到让人心痛，她也确实是自己一个人加精神依托，一点点走到超天酱那些位置的，12集就这么宣布长江后浪推前浪我多少是有点不服的，后面去救三次元糖糖虽然谢谢但是不看看她犯病是因为谁吗。再现象级网红，现实也有人不知道，这件事对她自己不算是解脱吧（游戏里不是有个结局是糖糖不做主播，回到现实去吗）。</span>强推第3集。</p>
+							</p>珀珀·洛丽波:1星。自始至终贯彻<span class="heimu" title="你知道的太多了">犹大</span>这个角色位，所以姑且有星，如果是其他没冠主播女孩重度依赖的番，可以给到5星。刻画很生动，当然<span class="heimu" title="你知道的太多了">11集的神人小动画和画风也是真的神人</span>，但相比美血华还是好了一点，至少身为队长敢作敢当。</p>
+							</p>狱蔷薇美血华:0星。如果是其他没冠主播女孩重度依赖的番，可以给到3星，很可惜这里是超天酱的世界。以我的拙见，追求美没有错，<span class="heimu" title="你知道的太多了">追求自我也没有错，因无法忍受而报复学校、教室、自我暂且不评价，但我看来啊，因自己无所适从的行为引来的追捧者，不能称之为粉丝，因而虽然结局没写到她被反噬而是给了一个她在开导下至少能提及自己自残的经历，但我觉得她的反抗有点小孩子过家家了。</span>4人中叛逆排到第二，但很可惜就因为是第二，或许也是番里她自己的雷区<span class="heimu" title="你知道的太多了">“我一定和别人是不一样的”</span>，束缚了她的描写，最后我的感觉第二次特写回（第九集前半对殴）从个性鲜明变成别逗你卡茜姐鞋底笑了。</p>
+							</p>祢智祸大人:1星。和精神或多或少有问题的三位相比，你祢智祸算轻的了。这位强占有欲又善伪装的执事小姐，如果是其他没冠主播女孩重度依赖的番，可以给到5星。<span class="heimu" title="你知道的太多了">重男轻女这件事，虽然和他们四个相比算轻的，但也是不可忽视的被精神问题。但是看下来的话，至少我自己的感觉是，除了第一季没分清她男女（以外，她的印象是最好的。</span>祢智祸大人负责开导剩下的这几位精神有问题的孩子，整合组合，甚至开导自己，<span class="heimu" title="你知道的太多了">看到儿时想要的戒指（应该是？），完成自我和解，算是唯二he的了。甚至结局解散组合私奔，你小子想的是真开啊.jpg</span>强推第7集。</p>
+							</p>卡茜:1星。受友人感想，改变自我的勇敢普通（存疑）女孩。她和前面三位感觉还不太一样，她是一出场我就感觉最后肯定和糖糖有关的角色，所以她抛不开这个冠名，但事实上好像没怎么关联。我想的是她讲糖糖的故事，走上糖糖没走到的现实生活的路，但很可惜就13集才开始这样，是好开始但是就这个神人番整体而言有点晚了。然后讨论她剧透内容的话，<span class="heimu" title="你知道的太多了">说点爆的，我觉得在这个番里平凡你就有罪。反抗役有美血华了，背刺有洛丽波了，甚至正常聊天有祢智祸了，卡茜能提供的，只有以“非主播”的身份观察这四位局内人了，但是你介绍角色还是介绍都有多少粉丝，说明她这视角也被淡化了，那我觉得这角色和超天酱一样被献祭了啊，真就卖oc和声优来了是吧。</span>结果像那个mygo，追番追下来的人会懂你的巧思，可整体看我暂且觉得这角色太虚无了。</p>
+                        </div>
+                    </div>
+
+                    <div class="review-item">
+                        <div class="item-header">
+                            <i class="fa-solid fa-palette"></i>
+                            <h3>美术 / 视觉</h3>
+                            <span class="stars">⭐️⭐️⭐️⭐️️</span>
+                        </div>
+                        <div class="item-body">
+                            画风不过多评价，极具创造性和前瞻性，表现手法多到气笑了的程度。好看的是真好看，憋笑的也是真憋笑，虽然大多数神人描写都最好别看，但游戏本体你都看过了，这画风怎么也比一肚子东西想说结果穷到啥都画不出来还丑好点。（姐5个各有各的好看其实）
+                        </div>
+                    </div>
+
+                    <div class="review-item">
+                        <div class="item-header">
+                            <i class="fa-solid fa-headphones"></i>
+                            <h3>音乐 / 声优</h3>
+                            <span class="stars">⭐️⭐️⭐️⭐️⭐️</span>
+                        </div>
+                        <div class="item-body">
+                            OP「INTERNET ANGEL」好听，ed没怎么听，op特殊演出也挺有想法的，原口沙辅歌也很给力。声优的话出道（这个我没查过）就配得这么贴脸未来可期，然后超天酱cv<span class="heimu" title="你知道的太多了">22/7的莎莉酱孤军奋战辛苦了（，作为老牌227最后一人实力还是在啊</span>。
+                        </div>
+                    </div>
+
+                    <div class="review-item">
+                        <div class="item-header">
+                            <i class="fa-solid fa-wifi"></i>
+                            <h3>互联网文化刻画</h3>
+                            <span class="stars">⭐️⭐️⭐️⭐️️</span>
+                        </div>
+                        <div class="item-body">
+						我是相当不懂地雷系文化，所以不评价这方面了，可是关于互联网造神封神的刻画，感觉还是那个词，无病呻吟，总觉得差点什么但又说不上来，或许是这番画风太神了懒得喷了。
+                        </div>
+                    </div>
+
+                    <div class="review-item">
+                        <div class="item-header">
+                            <i class="fa-regular fa-heart"></i>
+                            <h3>情感共鸣</h3>
+                            <span class="stars">没星️</span>
+                        </div>
+                        <div class="item-body">
+						少女得到救赎、少女得到反叛、少女争夺世界、少女追求自我、糖糖在努力地活着（自配bgm），明明听上去很感人的词汇，怎么看完是这个样子呢。
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- ===== 评论区 ===== -->
+                <div class="comment-section">
+                    <h3><i class="fa-regular fa-comment"></i> 评论区</h3>
+                    <p class="text-sm text-gray-500 dark:text-gray-400 mb-4">
+                        登录GitHub账号后即可留言<br>
+                        <span class="text-xs">未登录只能查看，不能发言</span>
+                    </p>
+
+                    <!-- Giscus 评论区（需登录GitHub） -->
+                    <script src="https://giscus.app/client.js"
+                            data-repo="Froallqwq/test_site"
+                            data-repo-id="R_kgDOSESCNA"
+                            data-category="Ideas"
+                            data-category-id="DIC_kwDOSESCNM4DAbRL"
+                            data-mapping="pathname"
+                            data-strict="0"
+                            data-reactions-enabled="1"
+                            data-emit-metadata="0"
+                            data-input-position="bottom"
+                            data-theme="preferred_color_scheme"
+                            data-lang="zh-CN"
+                            data-loading="lazy"
+                            crossorigin="anonymous"
+                            async>
+                    </script>
+
+                    <div class="mt-6 text-center">
+                        <p class="text-xs text-gray-400 dark:text-gray-500 mb-3">没有GitHub账号？来B站一起聊</p>
+                        <a href="https://www.bilibili.com/opus/1221129815853105152"
+                           target="_blank"
+                           class="inline-flex items-center gap-2 px-5 py-2.5 bg-primary hover:bg-blue-600 text-white rounded-full text-sm font-medium transition-colors shadow-sm">
+                            <i class="fa-brands fa-bilibili"></i> 在B站讨论
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== JavaScript ===== -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+
+            // 初始化 AOS
+            AOS.init({ duration: 800, once: true });
+
+            // 导航栏阴影
+            const navbar = document.getElementById('navbar');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 30) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            });
+
+            // 夜间模式
+            const themeToggle = document.getElementById('themeToggle');
+            const themeIcon = document.getElementById('themeIcon');
+            const themeLabel = document.getElementById('themeLabel');
+            const html = document.documentElement;
+
+            function setTheme(theme) {
+                if (theme === 'dark') {
+                    html.classList.add('dark');
+                    themeIcon.className = 'fa-regular fa-sun';
+                    themeLabel.textContent = '白天';
+                } else {
+                    html.classList.remove('dark');
+                    themeIcon.className = 'fa-regular fa-moon';
+                    themeLabel.textContent = '夜间';
+                }
+                localStorage.setItem('theme', theme);
+            }
+
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme) {
+                setTheme(savedTheme);
+            } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                setTheme('dark');
+            }
+
+            themeToggle.addEventListener('click', function() {
+                const isDark = html.classList.contains('dark');
+                setTheme(isDark ? 'light' : 'dark');
+            });
+
+            // 移动端菜单
+            const menuBtn = document.getElementById('menuBtn');
+            const mobileMenu = document.getElementById('mobileMenu');
+            menuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+            document.querySelectorAll('#mobileMenu a').forEach(link => {
+                link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+            });
+
+            // 平滑滚动
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        e.preventDefault();
+                        window.scrollTo({ top: target.offsetTop - 70, behavior: 'smooth' });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
